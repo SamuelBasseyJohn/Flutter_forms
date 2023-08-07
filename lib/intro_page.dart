@@ -12,7 +12,7 @@ class IntroPage extends StatefulWidget {
 class _IntroPageState extends State<IntroPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
+  bool obscure = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +46,7 @@ class _IntroPageState extends State<IntroPage> {
                 ),
                 TextField(
                   controller: _passwordController,
-                  obscureText: true,
+                  obscureText: obscure,
                   decoration: InputDecoration(
                       labelText: "Password:",
                       hintText: "12345678",
@@ -54,8 +54,14 @@ class _IntroPageState extends State<IntroPage> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       suffixIcon: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.visibility_off))),
+                          onPressed: () {
+                            setState(() {
+                              obscure = !obscure;
+                            });
+                          },
+                          icon: Icon(obscure
+                              ? Icons.visibility
+                              : Icons.visibility_off))),
                 ),
                 const Spacer(
                   flex: 8,

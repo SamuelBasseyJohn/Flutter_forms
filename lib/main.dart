@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'intro_page.dart';
+import 'package:flutter_forms/form_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -16,7 +15,7 @@ class MainApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
         useMaterial3: true,
       ),
-      home: const IntroPage(),
+      home: const FormPage(),
     );
   }
 }
