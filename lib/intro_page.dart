@@ -11,6 +11,7 @@ class IntroPage extends StatefulWidget {
 
 class _IntroPageState extends State<IntroPage> {
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,25 +22,43 @@ class _IntroPageState extends State<IntroPage> {
             child: Column(
               children: [
                 const Spacer(
-                  flex: 1,
+                  flex: 2,
                 ),
                 const Text(
                   "Flutter Forms",
                   style: TextStyle(fontSize: 55, fontWeight: FontWeight.w800),
                 ),
                 const Spacer(
-                  flex: 3,
+                  flex: 5,
                 ),
                 TextField(
                   controller: _nameController,
                   decoration: InputDecoration(
-                      labelText: "Name:",
-                      hintText: "Enter your name",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15))),
+                    labelText: "Name:",
+                    hintText: "Enter your name",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
                 ),
                 const Spacer(
-                  flex: 5,
+                  flex: 1,
+                ),
+                TextField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                      labelText: "Password:",
+                      hintText: "12345678",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      suffixIcon: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.visibility_off))),
+                ),
+                const Spacer(
+                  flex: 8,
                 )
               ],
             ),
@@ -48,12 +67,13 @@ class _IntroPageState extends State<IntroPage> {
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             String username = _nameController.value.text;
-            print(username);
+            List<String> names = username.split(" ");
+            print(names);
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => Home(
-                  username: username,
+                  username: names[0],
                 ),
               ),
             );
